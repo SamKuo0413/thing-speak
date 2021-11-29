@@ -1,17 +1,13 @@
-let _1 = 0
-let _2 = 0
-ESP8266_IoT.initWIFI(SerialPin.P8, SerialPin.P12, BaudRate.BaudRate115200)
-ESP8266_IoT.connectWifi("YHJH-04", "your_pwd")
+Obloq_http.Obloq_WIFI_setup(
+SerialPin.P12,
+SerialPin.P8,
+"22-5-4",
+"22933825"
+)
 basic.forever(function () {
-    ESP8266_IoT.connectThingSpeak()
-    ESP8266_IoT.setData(
+    Obloq_http.saveToThingSpeak(
     "PME0W3E16ZG9XBZE",
-    _1,
-    _2
+    input.runningTime(),
+    input.acceleration(Dimension.X)
     )
-    ESP8266_IoT.uploadData()
-})
-basic.forever(function () {
-    _2 += 1
-    basic.pause(1000)
 })
